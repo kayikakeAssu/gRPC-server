@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_package = "org.assu.stubs";
+
+service BankService {
+  rpc convert (ConvertCurrencyRequest) returns (ConvertCurrencyResponse); //Unary model
+  rpc getCurrencyStream (ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse); //Server stream model
+  rpc performStream (stream ConvertCurrencyRequest) returns (ConvertCurrencyResponse); //Client stream model
+  rpc fullStream (stream ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse); //Bidirectionnel stream model
+}
+
+message ConvertCurrencyRequest {
+  string currencyFrom = 1;
+  string currencyTo = 2;
+  float amount = 3;
+}
+
+message ConvertCurrencyResponse {
+  string currencyFrom = 1;
+  string currencyTo = 2;
+  float amount = 3;
+  float result = 4;
+}
